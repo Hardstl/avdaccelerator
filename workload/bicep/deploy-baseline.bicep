@@ -9,11 +9,11 @@ targetScope = 'subscription'
 @description('Required. The name of the resource group to deploy.')
 param deploymentPrefix string = ''
 
-@description('Optional. Location where to deploy compute services. (Default: eastus2)')
-param avdSessionHostLocation string = 'eastus2'
+@description('Optional. Location where to deploy compute services. (Default: westeurope)')
+param avdSessionHostLocation string = 'westeurope'
 
-@description('Optional. Location where to deploy AVD management plane. (Default: eastus2)')
-param avdManagementPlaneLocation string = 'eastus2'
+@description('Optional. Location where to deploy AVD management plane. (Default: westeurope)')
+param avdManagementPlaneLocation string = 'westeurope'
 
 @description('Required. AVD workload subscription ID, multiple subscriptions scenario.')
 param avdWorkloadSubsId string = ''
@@ -26,7 +26,7 @@ param avdVmLocalUserName string = ''
 
 @description('Required. AVD session host local password.')
 @secure()
-param avdVmLocalUserPassword string = ''
+param avdVmLocalUserPassword string
 
 @allowed([
     'ADDS' // Active Directory Domain Services
@@ -36,7 +36,7 @@ param avdVmLocalUserPassword string = ''
 @description('Required, The service providing domain services for Azure Virtual Desktop. (Defualt: ADDS)')
 param avdIdentityServiceProvider string = 'ADDS'
 
-@description('Required, Eronll session hosts on Intune. (Defualt: false)')
+@description('Required, Enroll session hosts on Intune. (Defualt: false)')
 param createIntuneEnrollment bool = false
 
 @description('Optional, Identity ID to grant RBAC role to access AVD application group. (Defualt: "")')
@@ -58,7 +58,7 @@ param avdDomainJoinUserName string = ''
 
 @description('Required. AVD session host domain join password.')
 @secure()
-param avdDomainJoinUserPassword string = ''
+param avdDomainJoinUserPassword string
 
 @description('Optional. OU path to join AVd VMs. (Default: "")')
 param avdOuPath string = ''
@@ -108,7 +108,7 @@ param createAvdVnet bool = true
 @description('Optional. Existing virtual network subnet. (Default: "")')
 param existingVnetSubnetResourceId string = ''
 
-@description('Required. Existing hub virtual network for perring.')
+@description('Required. Existing hub virtual network for peering.')
 param existingHubVnetResourceId string = ''
 
 @description('Optional. AVD virtual network address prefixes. (Default: 10.10.0.0/23)')
@@ -135,16 +135,16 @@ param vNetworkGatewayOnHub bool = false
 @description('Optional. Deploy Fslogix setup. (Default: true)')
 param createAvdFslogixDeployment bool = true
 
-@description('Optional. Fslogix file share size. (Default: ~1TB)')
-param avdFslogixFileShareQuotaSize int = 10
+@description('Optional. Fslogix file share size. (Default: 100GB)')
+param avdFslogixFileShareQuotaSize int = 1
 
 @description('Optional. Deploy new session hosts. (Default: true)')
 param avdDeploySessionHosts bool = true
 
-@description('Optional. Deploy AVD monitoring resources and setings. (Default: true)')
+@description('Optional. Deploy AVD monitoring resources and settings. (Default: false)')
 param avdDeployMonitoring bool = false
 
-@description('Optional. Deploy AVD Azure log analytics workspace. (Default: true)')
+@description('Optional. Deploy AVD Azure log analytics workspace. (Default: false)')
 param deployAlaWorkspace bool = false
 
 @description('Required. Create and assign custom Azure Policy for diagnostic settings for the AVD Log Analytics workspace.')
@@ -872,7 +872,6 @@ module deployAzurePolicyNetworking './avd-modules/avd-azure-policy-networking.bi
     dependsOn: [
     ]
 }
-
 
 // Networking.
 module avdNetworking 'avd-modules/avd-networking.bicep' = if (createAvdVnet) {

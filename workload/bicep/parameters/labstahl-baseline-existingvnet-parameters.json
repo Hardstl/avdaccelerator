@@ -18,19 +18,16 @@
             "value": false
         },   
         "avdWorkloadSubsId": {
-            "value": "<<subscriptionId>>"
+            "value": "3e33e8d3-19a0-47a9-a0e9-d1f847c5fca0"
         },
         "avdEnterpriseAppObjectId": {
-            "value": false
+            "value": "42e6f1df-3ed4-407a-a173-0302f061b1eb"
         },
         "avdVmLocalUserName": {
-            "value": "<<localUserName>>"
-        },
-        "avdVmLocalUserPassword": {
-            "value": "<<localUserPassword>>"
+            "value": "hadmin"
         },
         "avdIdentityServiceProvider": {
-            "value": "<<IdentityServiceProviderType>>"
+            "value": "ADDS"
         },     
         "createIntuneEnrollment": {
             "value": false
@@ -42,16 +39,13 @@
             "value": "Group"
         },       
         "avdIdentityDomainName": {
-            "value": ""
+            "value": "hardstahl.se"
         },
         "avdDomainJoinUserName": {
-            "value": ""
-        },
-        "avdDomainJoinUserPassword": {
-            "value": ""
+            "value": "svc_avddj@hardstahl.se"
         },
         "avdOuPath": {
-            "value": ""
+            "value": "OU=Prod,OU=AVD,OU=HARDSTAHL,DC=hardstahl,DC=se"
         },
         "avdHostPoolType": {
             "value": "Pooled"
@@ -86,35 +80,14 @@
         "existingVnetSubnetResourceId": {
             "value": "/subscriptions/3e33e8d3-19a0-47a9-a0e9-d1f847c5fca0/resourceGroups/avd-core-we-prod-rg/providers/Microsoft.Network/virtualNetworks/vnet-avd-we-prod/subnets/snet-prod"
         },
-        "existingHubVnetResourceId": {
-            "value": ""
-        },
-        "avdVnetworkAddressPrefixes": {
-            "value": "10.10.0.0/23"
-        },
-        "avdVnetworkSubnetAddressPrefix": {
-            "value": "10.10.0.0/23"
-        },
-        "customDnsIps": {
-            "value": "none"
-        },
         "avdVnetPrivateDnsZone": {
-            "value": true
-        },
-        "avdVnetPrivateDnsZoneFilesId": {
-            "value": "<<PrivateDnsZoneFilesId>>"
-        },
-        "avdVnetPrivateDnsZoneKeyvaultId": {
-            "value": "<<PrivateDnsZoneKeyvaultId>>"
-        },
-        "vNetworkGatewayOnHub": {
             "value": false
         },
         "createAvdFslogixDeployment": {
             "value": true
         },
         "avdFslogixFileShareQuotaSize": {
-            "value": 10
+            "value": 1
         },
         "avdDeploySessionHosts": {
             "value": true
@@ -135,19 +108,19 @@
             "value": 5
         },
         "fslogixStorageSku": {
-            "value": "Premium_LRS"
+            "value": "Standard_LRS" // Default should be Premium_LRS
         },
         "encryptionAtHost": {
             "value": false
         },
         "avdSessionHostsSize": {
-            "value": "Standard_D2s_v3"
+            "value": "Standard_D2s_v5"
         },
         "avdSessionHostDiskType": {
             "value": "Standard_LRS"
         },
         "avdOsImage": {
-            "value": "win10_21h2"
+            "value": "win11_21h2"
         },
         "useSharedImage": {
             "value": false
@@ -156,7 +129,7 @@
             "value": ""
         },
         "storageOuPath": {
-            "value": ""
+            "value": "OU=AzureResources,OU=HARDSTAHL,DC=hardstahl,DC=se"
         },
         "createOuForStorage": {
             "value": false
