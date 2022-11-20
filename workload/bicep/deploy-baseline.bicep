@@ -514,7 +514,7 @@ var varTimeZones = {
     westus3: 'Mountain Standard Time'
 }
 
-var varAvdNamingUniqueStringSixChar = take('${uniqueString(avdWorkloadSubsId, varDeploymentPrefixLowercase, time)}', 6)
+var varAvdNamingUniqueStringSixChar = take('${uniqueString(avdWorkloadSubsId, varDeploymentPrefixLowercase)}', 6) //take('${uniqueString(avdWorkloadSubsId, varDeploymentPrefixLowercase, time)}', 6)
 var varAvdManagementPlaneNamingStandard = '${varAvdManagementPlaneLocationAcronym}-${varDeploymentPrefixLowercase}'
 var varAvdComputeStorageResourcesNamingStandard = '${varAvdSessionHostLocationAcronym}-${varDeploymentPrefixLowercase}'
 var varAvdServiceObjectsRgName = avdUseCustomNaming ? avdServiceObjectsRgCustomName : 'rg-avd-${varAvdManagementPlaneNamingStandard}-service-objects' // max length limit 90 characters
