@@ -341,7 +341,7 @@ resource defaultTelemetry 'Microsoft.Resources/deployments@2021-04-01' = if (ena
 module virtualMachine_nic '.bicep/nested_networkInterface.bicep' = [for (nicConfiguration, index) in nicConfigurations: {
   name: '${uniqueString(deployment().name, location)}-VM-Nic-${index}'
   params: {
-    networkInterfaceName: '${nicConfiguration.nicSuffix}${name}'
+    networkInterfaceName: '${name}-${nicConfiguration.nicSuffix}'
     virtualMachineName: name
     location: location
     tags: tags
@@ -387,7 +387,7 @@ resource virtualMachine 'Microsoft.Compute/virtualMachines@2021-07-01' = {
     storageProfile: {
       imageReference: imageReference
       osDisk: {
-        name: 'osdisk-001-${name}'
+        name: '${name}-osdisk-001'
         createOption: contains(osDisk, 'createOption') ? osDisk.createOption : 'FromImage'
         deleteOption: contains(osDisk, 'deleteOption') ? osDisk.deleteOption : 'Delete'
         diskSizeGB: osDisk.diskSizeGB
@@ -431,7 +431,7 @@ resource virtualMachine 'Microsoft.Compute/virtualMachines@2021-07-01' = {
           deleteOption: contains(nicConfiguration, 'deleteOption') ? nicConfiguration.deleteOption : 'Delete'
           primary: index == 0 ? true : false
         }
-        id: az.resourceId('Microsoft.Network/networkInterfaces', '${nicConfiguration.nicSuffix}${name}')
+        id: az.resourceId('Microsoft.Network/networkInterfaces', '${name}-${nicConfiguration.nicSuffix}')
       }]
     }
     diagnosticsProfile: {
